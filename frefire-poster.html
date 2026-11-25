@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Fire Gaming Event - Rathinam College</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=Exo+2:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .poster {
+    width: 700px;
+    height: 990px;
+    position: relative;
+    overflow: hidden;
+    background: #030a0f;
+  }
+
+  /* BG layers */
+  .bg-base {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 20%, #0d2a1a 0%, #030a0f 60%);
+  }
+
+  .bg-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 80, 0, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 80, 0, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: gridShift 8s linear infinite;
+  }
+
+  @keyframes gridShift {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 40px; }
+  }
+
+  /* Diagonal slashes */
+  .slash {
+    position: absolute;
+    width: 4px;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, #ff4500, transparent);
+    transform-origin: center;
+    opacity: 0.4;
+    animation: slashPulse 3s ease-in-out infinite alternate;
+  }
+  .slash:nth-child(1) { left: 10%; top: 5%; transform: rotate(20deg); animation-delay: 0s; }
+  .slash:nth-child(2) { right: 12%; top: 8%; transform: rotate(-20deg); animation-delay: 0.6s; }
+  .slash:nth-child(3) { left: 5%; top: 55%; transform: rotate(15deg); height: 120px; animation-delay: 1.2s; }
+  .slash:nth-child(4) { right: 5%; top: 60%; transform: rotate(-15deg); height: 120px; animation-delay: 0.3s; }
+
+  @keyframes slashPulse {
+    from { opacity: 0.2; }
+    to { opacity: 0.7; }
+  }
+
+  /* Fire particles */
+  .particles {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: float linear infinite;
+    opacity: 0;
+  }
+  @keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 0.6; }
+    100% { transform: translateY(-600px) scale(0); opacity: 0; }
+  }
+
+  /* HEADER ZONE */
+  .header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding-top: 32px;
+  }
+
+  .college-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #aaffd0;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    opacity: 0.9;
+  }
+
+  .college-sub {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(170,255,208,0.5);
+    text-transform: uppercase;
+  }
+
+  .divider {
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ff4500, #ffcc00, #ff4500, transparent);
+    margin: 12px auto;
+  }
+
+  .presents {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: rgba(255,180,100,0.7);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* FIRE FIRE label */
+  .ff-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 10px;
+    color: #ff6030;
+    text-transform: uppercase;
+    margin-bottom: -6px;
+  }
+
+  /* MAIN TITLE */
+  .main-title {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 20px;
+    margin-top: -4px;
+  }
+
+  .free-fire-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 90px;
+    font-weight: 900;
+    line-height: 0.9;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #ffdd00 0%, #ff8800 40%, #ff3300 80%, #cc1100 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(255,100,0,0.8)) drop-shadow(0 0 60px rgba(255,60,0,0.4));
+    position: relative;
+    letter-spacing: -2px;
+  }
+
+  .free-fire-title::after {
+    content: 'FREE FIRE';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #ffdd00 0%, #ff8800 40%, #ff3300 80%, #cc1100 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(20px);
+    z-index: -1;
+    opacity: 0.5;
+  }
+
+  /* HERO CENTER */
+  .hero-zone {
+    position: relative;
+    height: 340px;
+    margin-top: -10px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(ellipse, rgba(255,80,0,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glowPulse 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glowPulse {
+    from { opacity: 0.6; transform: translate(-50%, -50%) scale(0.9); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  /* Character SVG silhouette */
+  .character-wrap {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 340px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  svg.char {
+    width: 260px;
+    height: 310px;
+    filter: drop-shadow(0 0 20px #ff4400) drop-shadow(0 0 50px rgba(255,80,0,0.5));
+  }
+
+  /* Crosshair decorations */
+  .crosshair {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(255,200,0,0.5);
+    border-radius: 50%;
+    animation: spinCross 6s linear infinite;
+  }
+  .crosshair::before, .crosshair::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,200,0,0.5);
+  }
+  .crosshair::before { width: 2px; height: 20px; left: 50%; top: -10px; transform: translateX(-50%); }
+  .crosshair::after { width: 20px; height: 2px; top: 50%; left: -10px; transform: translateY(-50%); }
+  .crosshair.left { left: 60px; top: 100px; }
+  .crosshair.right { right: 60px; top: 140px; transform: scale(0.7); animation-direction: reverse; }
+
+  @keyframes spinCross {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .crosshair.right {
+    animation: spinCrossRight 8s linear infinite;
+  }
+  @keyframes spinCrossRight {
+    from { transform: scale(0.7) rotate(0deg); }
+    to { transform: scale(0.7) rotate(-360deg); }
+  }
+
+  /* EVENT TITLE BAND */
+  .event-band {
+    position: relative;
+    z-index: 10;
+    margin: 0 30px;
+    background: linear-gradient(135deg, rgba(255,70,0,0.15), rgba(255,180,0,0.1));
+    border: 1px solid rgba(255,100,0,0.4);
+    border-left: 4px solid #ff4500;
+    padding: 10px 20px;
+    clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%);
+  }
+
+  .event-tag {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #ffcc00;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .event-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255,100,0,0.8);
+  }
+
+  .event-name span { color: #ff6030; }
+
+  /* PRIZE SECTION */
+  .prize-section {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 12px;
+    margin: 18px 30px;
+  }
+
+  .prize-card {
+    flex: 1;
+    background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(20,5,0,0.8));
+    border: 1px solid rgba(255,80,0,0.3);
+    padding: 12px 8px;
+    text-align: center;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .prize-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #ff4500, transparent);
+  }
+
+  .prize-card.gold { border-color: rgba(255,200,0,0.5); }
+  .prize-card.gold::before { background: linear-gradient(to right, transparent, #ffcc00, transparent); }
+  .prize-card.silver { border-color: rgba(200,200,200,0.4); }
+  .prize-card.silver::before { background: linear-gradient(to right, transparent, #aaa, transparent); }
+  .prize-card.bronze { border-color: rgba(180,100,40,0.4); }
+  .prize-card.bronze::before { background: linear-gradient(to right, transparent, #cd7f32, transparent); }
+
+  .prize-rank {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .prize-medal {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+
+  .prize-amount {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+  }
+  .prize-card.gold .prize-amount { color: #ffcc00; text-shadow: 0 0 15px rgba(255,200,0,0.8); }
+  .prize-card.silver .prize-amount { color: #ddd; text-shadow: 0 0 15px rgba(200,200,200,0.5); }
+  .prize-card.bronze .prize-amount { color: #cd7f32; text-shadow: 0 0 15px rgba(180,100,40,0.5); }
+
+  .prize-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* INFO STRIP */
+  .info-strip {
+    position: relative;
+    z-index: 10;
+    margin: 10px 30px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  .info-item {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,80,0,0.2);
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  .info-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .info-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(255,180,100,0.6);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .info-value {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  /* REGISTRATION */
+  .reg-section {
+    position: relative;
+    z-index: 10;
+    margin: 14px 30px 0;
+    background: linear-gradient(135deg, rgba(255,50,0,0.15), rgba(255,150,0,0.1));
+    border: 1px solid rgba(255,100,0,0.35);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
+  }
+
+  .reg-left {}
+  .reg-tag {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: rgba(255,180,100,0.6);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .reg-fee {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .reg-fee span { color: #ffcc00; }
+  .reg-note {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 2px;
+  }
+
+  .reg-right {}
+  .reg-contact-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(255,180,100,0.6);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    text-align: right;
+  }
+  .reg-contact {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #aaffd0;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  .footer {
+    position: relative;
+    z-index: 10;
+    margin: 14px 30px 0;
+    text-align: center;
+  }
+
+  .footer-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,80,0,0.5), transparent);
+    margin-bottom: 10px;
+  }
+
+  .footer-text {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255,180,100,0.4);
+    text-transform: uppercase;
+  }
+
+  .footer-college {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(170,255,208,0.6);
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* Corner accents */
+  .corner {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 20;
+  }
+  .corner::before, .corner::after {
+    content: '';
+    position: absolute;
+    background: #ff4500;
+  }
+  .corner-tl { top: 0; left: 0; }
+  .corner-tl::before { width: 3px; height: 50px; top: 0; left: 0; }
+  .corner-tl::after { width: 50px; height: 3px; top: 0; left: 0; }
+
+  .corner-tr { top: 0; right: 0; }
+  .corner-tr::before { width: 3px; height: 50px; top: 0; right: 0; }
+  .corner-tr::after { width: 50px; height: 3px; top: 0; right: 0; }
+
+  .corner-bl { bottom: 0; left: 0; }
+  .corner-bl::before { width: 3px; height: 50px; bottom: 0; left: 0; }
+  .corner-bl::after { width: 50px; height: 3px; bottom: 0; left: 0; }
+
+  .corner-br { bottom: 0; right: 0; }
+  .corner-br::before { width: 3px; height: 50px; bottom: 0; right: 0; }
+  .corner-br::after { width: 50px; height: 3px; bottom: 0; right: 0; }
+
+  /* Scan line effect */
+  .scanlines {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.08) 2px,
+      rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 30;
+  }
+
+  /* Animated border glow */
+  .border-glow {
+    position: absolute; inset: 0;
+    border: 2px solid transparent;
+    background: linear-gradient(#030a0f, #030a0f) padding-box,
+                linear-gradient(180deg, #ff4500, #ffcc00, #ff4500) border-box;
+    opacity: 0.3;
+    animation: borderAnim 4s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 5;
+  }
+  @keyframes borderAnim {
+    from { opacity: 0.15; }
+    to { opacity: 0.45; }
+  }
+
+  /* Flame SVG at bottom */
+  .flames-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 160px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+</style>
+</head>
+<body>
+<div class="poster">
+  <!-- Background -->
+  <div class="bg-base"></div>
+  <div class="bg-grid"></div>
+  <div class="border-glow"></div>
+
+  <!-- Slashes -->
+  <div class="slash"></div>
+  <div class="slash"></div>
+  <div class="slash"></div>
+  <div class="slash"></div>
+
+  <!-- Scanlines -->
+  <div class="scanlines"></div>
+
+  <!-- Corner accents -->
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <!-- Flames background -->
+  <div class="flames-bg">
+    <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <defs>
+        <radialGradient id="fg1" cx="50%" cy="100%" r="70%">
+          <stop offset="0%" stop-color="#ff6600" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#ff0000" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="700" height="160" fill="url(#fg1)"/>
+      <path d="M0,160 Q60,80 120,140 Q180,60 240,130 Q300,50 360,120 Q420,60 480,140 Q540,70 600,130 Q650,80 700,150 L700,160 Z" fill="rgba(255,60,0,0.2)"/>
+      <path d="M0,160 Q80,100 150,150 Q230,90 310,145 Q390,85 460,150 Q540,95 620,145 L700,160 Z" fill="rgba(255,100,0,0.15)"/>
+    </svg>
+  </div>
+
+  <!-- Particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="college-name">Rathinam College of Arts & Science</div>
+    <div class="college-sub">Eachanari, Coimbatore — Tamil Nadu</div>
+    <div class="divider"></div>
+    <div class="presents">Department of Computer Science · Presents</div>
+    <div class="ff-label">🔥 Free Fire 🔥</div>
+  </div>
+
+  <!-- MAIN TITLE -->
+  <div class="main-title">
+    <div class="free-fire-title">FREE<br>FIRE</div>
+  </div>
+
+  <!-- HERO ZONE -->
+  <div class="hero-zone">
+    <div class="hero-glow"></div>
+    <div class="crosshair left"></div>
+    <div class="crosshair right"></div>
+    <div class="character-wrap">
+      <!-- Stylized warrior silhouette SVG -->
+      <svg class="char" viewBox="0 0 260 310" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff8800"/>
+            <stop offset="50%" stop-color="#ff4400"/>
+            <stop offset="100%" stop-color="#cc1100"/>
+          </linearGradient>
+          <linearGradient id="glowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffaa00" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#ff2200" stop-opacity="0.3"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Shadow/base -->
+        <ellipse cx="130" cy="300" rx="80" ry="10" fill="rgba(255,60,0,0.3)"/>
+
+        <!-- Legs -->
+        <rect x="95" y="210" width="30" height="80" rx="8" fill="url(#bodyGrad)"/>
+        <rect x="135" y="210" width="30" height="80" rx="8" fill="url(#bodyGrad)"/>
+        <!-- Boots -->
+        <rect x="88" y="275" width="40" height="20" rx="5" fill="#220800"/>
+        <rect x="130" y="275" width="42" height="20" rx="5" fill="#220800"/>
+
+        <!-- Body/torso -->
+        <path d="M85 150 Q80 190 90 215 L170 215 Q180 190 175 150 Z" fill="url(#bodyGrad)" filter="url(#glow)"/>
+
+        <!-- Chest detail -->
+        <path d="M105 160 Q130 155 155 160 Q150 185 130 190 Q110 185 105 160 Z" fill="rgba(255,200,0,0.2)" stroke="rgba(255,200,0,0.5)" stroke-width="1"/>
+
+        <!-- Belt -->
+        <rect x="88" y="205" width="84" height="12" rx="4" fill="#1a0800"/>
+        <rect x="120" y="205" width="20" height="12" fill="rgba(255,180,0,0.6)"/>
+
+        <!-- Arms -->
+        <!-- Left arm (gun arm) -->
+        <path d="M85 155 Q60 170 50 200 Q55 210 65 205 Q70 180 90 168 Z" fill="url(#bodyGrad)"/>
+        <!-- Gun -->
+        <rect x="20" y="195" width="55" height="12" rx="3" fill="#0a0a0a" stroke="#ff4400" stroke-width="1"/>
+        <rect x="15" y="197" width="12" height="8" rx="2" fill="#333"/>
+        <rect x="65" y="193" width="20" height="6" rx="2" fill="#222"/>
+        <!-- Gun barrel glow -->
+        <circle cx="17" cy="201" r="3" fill="#ff6600" opacity="0.9">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Right arm -->
+        <path d="M175 155 Q200 165 210 195 Q205 205 195 200 Q185 175 170 168 Z" fill="url(#bodyGrad)"/>
+        <!-- Right hand -->
+        <ellipse cx="210" cy="200" rx="14" ry="10" fill="url(#bodyGrad)"/>
+
+        <!-- Neck -->
+        <rect x="118" y="128" width="24" height="26" rx="6" fill="url(#bodyGrad)"/>
+
+        <!-- Head (helmet) -->
+        <ellipse cx="130" cy="115" rx="42" ry="48" fill="url(#bodyGrad)" filter="url(#glow)"/>
+        <!-- Helmet visor -->
+        <path d="M95 108 Q130 135 165 108" fill="rgba(0,200,255,0.15)" stroke="rgba(0,200,255,0.4)" stroke-width="1.5"/>
+        <!-- Visor glow line -->
+        <path d="M100 108 Q130 132 160 108" fill="none" stroke="rgba(0,220,255,0.7)" stroke-width="1">
+          <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+        </path>
+        <!-- Helmet top ridge -->
+        <path d="M110 75 Q130 60 150 75" fill="none" stroke="rgba(255,200,0,0.7)" stroke-width="3" stroke-linecap="round"/>
+        <!-- Ear pieces -->
+        <ellipse cx="88" cy="118" rx="8" ry="12" fill="#1a0800" stroke="#ff4400" stroke-width="1"/>
+        <ellipse cx="172" cy="118" rx="8" ry="12" fill="#1a0800" stroke="#ff4400" stroke-width="1"/>
+
+        <!-- Shoulder pads -->
+        <ellipse cx="82" cy="150" rx="20" ry="12" fill="#1a0800" stroke="#ff4400" stroke-width="1.5" transform="rotate(-15 82 150)"/>
+        <ellipse cx="178" cy="150" rx="20" ry="12" fill="#1a0800" stroke="#ff4400" stroke-width="1.5" transform="rotate(15 178 150)"/>
+
+        <!-- Energy lines on body -->
+        <line x1="115" y1="165" x2="115" y2="200" stroke="rgba(255,200,0,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="145" y1="165" x2="145" y2="200" stroke="rgba(255,200,0,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- EVENT BAND -->
+  <div class="event-band">
+    <div class="event-tag">⚡ Official Gaming Tournament ⚡</div>
+    <div class="event-name">BATTLE <span>ROYALE</span> CHAMPIONSHIP</div>
+  </div>
+
+  <!-- PRIZE SECTION -->
+  <div class="prize-section">
+    <div class="prize-card silver">
+      <div class="prize-rank">2nd Place</div>
+      <div class="prize-medal">🥈</div>
+      <div class="prize-amount">₹1,500</div>
+      <div class="prize-label">Runner Up</div>
+    </div>
+    <div class="prize-card gold">
+      <div class="prize-rank">1st Place</div>
+      <div class="prize-medal">🏆</div>
+      <div class="prize-amount">₹3,000</div>
+      <div class="prize-label">Champion</div>
+    </div>
+    <div class="prize-card bronze">
+      <div class="prize-rank">3rd Place</div>
+      <div class="prize-medal">🥉</div>
+      <div class="prize-amount">₹750</div>
+      <div class="prize-label">3rd Place</div>
+    </div>
+  </div>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-item">
+      <div class="info-icon">📅</div>
+      <div class="info-label">Date</div>
+      <div class="info-value">March 20<br>2025</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">🕙</div>
+      <div class="info-label">Time</div>
+      <div class="info-value">10:00 AM<br>Onwards</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div class="info-label">Venue</div>
+      <div class="info-value">CS Lab<br>Block A</div>
+    </div>
+  </div>
+
+  <!-- REGISTRATION -->
+  <div class="reg-section">
+    <div class="reg-left">
+      <div class="reg-tag">Entry Fee</div>
+      <div class="reg-fee">₹<span>100</span> / Team</div>
+      <div class="reg-note">Squad of 4 · Limited Slots</div>
+    </div>
+    <div class="reg-right">
+      <div class="reg-contact-label">Register / Info</div>
+      <div class="reg-contact">
+        📞 +91 98765 43210<br>
+        📞 +91 91234 56789
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-line"></div>
+    <div class="footer-text">Hosted By Department of Computer Science</div>
+    <div class="footer-college">Rathinam College of Arts & Science · Coimbatore</div>
+  </div>
+
+</div>
+
+<script>
+  // Generate particles
+  const container = document.getElementById('particles');
+  const colors = ['#ff4400','#ff8800','#ffcc00','#ff2200'];
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 5 + 2;
+    p.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${Math.random() * 100}%;
+      bottom: ${Math.random() * 30}%;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration: ${Math.random() * 4 + 3}s;
+      animation-delay: ${Math.random() * 5}s;
+      box-shadow: 0 0 ${size * 2}px currentColor;
+    `;
+    container.appendChild(p);
+  }
+</script>
+</body>
+</html>
